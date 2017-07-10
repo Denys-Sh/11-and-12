@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="SampleApp">
+<head>
+    <title>ng-show &amp; ng-hide</title>
+
+    <!--ng-show & ng-hide – отображает или прячет элемент в соответствии с выражением с помощью display:none. -->
+
+    <script src="Libraries/angular.js"></script>
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+
+    <script>
+        var app = angular.module("SampleApp", []);
+
+        app.controller("SampleAppCtrl", function ($scope) {
+
+            $scope.clickHandler = function () {
+            $scope.hideElem1 = true;}
+
+            $scope.clickHandler2 = function () {
+            $scope.hideElem1 = false;}
+
+
+
+            $scope.clickHandler3 = function () {
+            $scope.hideElem2 = true;}
+            $scope.clickHandler4 = function () {
+            $scope.hideElem2 = false;}
+
+
+            $scope.clickHandler5 = function () {
+            $scope.hideElem3 = true;}
+            $scope.clickHandler6 = function () {
+            $scope.hideElem3 = false;}
+
+
+
+          //  $scope.ifElem3 = false;
+       
+
+
+
+
+$scope.myNavak = function(){
+            $scope.navak = ["знание иностранных языков", "компьютерная грамотность", "внимательность", "бысрая обучаемость", "языки програмирования"];
+        }
+
+        $scope.myLanguege = function(){
+            $scope.langues = ["английский язык", "языки програмирования", "украинский язык"];
+        }
+
+
+ });
+
+
+
+    </script>
+
+    <style>
+        div {
+            display: inline-block;
+            border: 1px solid gray;
+            border-radius: 3px;
+            margin: 14px;
+            padding: 30px;
+        }
+
+        #d1 {
+            background-color: lightgreen;
+        }
+
+        #d2 {
+            background-color: lightblue;
+        }
+
+        #d3 {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+<body ng-controller="SampleAppCtrl">
+<button ng-click="clickHandler2()">Set1 on</button>
+<button ng-click="clickHandler()">Set1 off</button>
+<br />
+
+
+<button ng-click="clickHandler3()">Set2 onn</button>
+<button ng-click="clickHandler4()">Set2 off</button><br />
+
+<button ng-click="clickHandler5()">Set3 onn</button>
+<button ng-click="clickHandler6()">Set3 off</button><br />
+    
+
+    <div id="d1" ng-hide="hideElem1">Element 1</div>
+    <div id="d2" ng-show="hideElem2">Element 2</div>
+    <div id="d3" ng-if="hideElem3">Element 3</div>
+
+    <div>
+        <button ng-click="myNavak()"> Moy navaki</button>
+        <button ng-click="myLanguege()"> Moy Yzuki</button>
+        
+        
+        <ul>
+            <li ng-repeat="subject in navak">
+                  {{subject}}
+            </li>
+        </ul>
+        
+        <ul>
+            <li ng-repeat="skill in langues">
+                
+                {{skill}}
+            </li>
+        </ul>
+    </div>
+
+
+</body>
+</html>

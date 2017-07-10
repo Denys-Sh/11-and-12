@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html ng-app="SampleApp">
+<head>
+    <!--
+        one-way data binding - данные берутся из модели и размещаются в пользовательском интерфейсе.
+        Если значение свойства модели привязанного к интерфейсу обновляется, то интерфейс обновляется автоматически.
+    -->
+    <title>One way data-binding</title>
+
+    <script src="Libraries/angular.js"></script>
+
+    <script>
+        var app = angular.module("SampleApp", []);
+
+        app.controller("SampleAppCtrl", function ($scope) {
+            $scope.items = [{ name: "vasiy", value: "30", adres: "Dnipro" },
+                { name: "Kolya", value: "24", adres: "Dnipro" },
+                { name: "Gena", value: "21" }];
+        });
+
+    </script>
+</head>
+<body>
+    <div ng-controller="SampleAppCtrl">
+
+        <!-- {{ }} - однонаправленная привязка от модели к представлению -->
+        <div>There are {{items.length}} items</div>
+
+        <div>
+            <!-- ng-bind - директива выполняющая замену HTML содержимого элемента на значение полученное через установленное выражение привязки -->
+            There are <span ng-bind="items.length"></span> items
+        </div>
+
+        <!-- ng-bind-template - директива, которая замещает содержимое элемента данными полученными в результате выполнения выражения привязки, в отличии от ng-bind
+             директива ng-bind-template может содержать несколько {{ }} выражений -->
+        <div ng-bind-template="First item adres (bind-template): {{items[0].adres}}. Имя: {{items[0].name}} Возраст: {{items[0].value}}.
+"></div>
+
+        <!--ng-non-bindable - указывает, что содержимое элемента не должно компилироваться и в нем не должна происходить привязка данных-->
+ <div ng-bind-template="Second item ИМя (non-bindable): {{items[1].name}}. Адресс: {{items[1].adres}}. Возраст: {{items[1].value}}."></div>
+
+  <ul>
+            <li ng-repeat="item in items">{{item.name}} , {{item.value}}</li>
+        </ul>
+
+
+        
+    </div>
+</body>
+</html>
+

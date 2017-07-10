@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html ng-app="SampleApp">
+<head>
+    <title>Template directives</title>
+
+    <!--
+        Template directives - набор директив, которые могут использоваться для генерации HTML разметки:
+        ng-repeat
+        ng-include
+        ng-cloack
+        ng-repeat-start
+        ng-repeat-end
+        ng-switch
+    -->
+
+    <script src="Libraries/angular.js"></script>
+    <link href="Libraries/bootstrap.css" rel="stylesheet" />
+    <link href="Libraries/bootstrap-theme.css" rel="stylesheet" />
+
+    <script>
+        var app = angular.module("SampleApp", []);
+
+        app.controller("SampleAppCtrl", function ($scope) {
+            $scope.items = [{ name: "Вася", value: "Львов", old: "65", },
+                { name: "Миша", old: "32", value: "Киев" },
+                {old: "119", name: "Коля", value: "Одесса" }];
+        });
+    </script>
+<style>
+        .class1 {
+            background-color: lightgreen;
+        }
+
+        .class2 {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="SampleAppCtrl">
+        <h3 class="panel-header">Items</h3>
+
+        <table class="table">
+            <thead>
+                <tr>
+			<th>#</th>
+                    <th>Name</th>
+                    <th>OLD</th>
+			<th>Value</th>
+                </tr>
+            </thead>
+
+
+
+
+
+            <!--
+                 ng-repeat - генерирует новые копии элемента tr.
+            -->
+            <tbody>
+                <tr ng-repeat="item in items" ng-class="$even ? 'class1' : '*'" >
+<td>{{$index+1}} </td> <!--$index встроенная переменная содержащая номер итерации-->
+
+                    <td >{{item.name}}<span ng-if="$first">*</span>
+
+			
+			
+			</td>
+
+
+
+					<td>{{item.old}} <span ng-if="$last">*</span></td>
+                 						   <td>{{item.value}}</td>
+
+			
+                </tr>
+            </tbody>
+
+
+
+
+
+        </table>
+ <h3 class="panel-header">List</h3>
+
+        <!--<p ng-repeat="item in items"> - создать параграф для каждого элемента в items-->
+        <p ng-repeat="item in items"  ng-class="$even ? 'class1' : 'i'">
+            <!--<span ng-repeat="property in item" > - создать span для каждого свойства в item-->
+            <span ng-repeat="property in item" >{{property}}, 
+                       <span ng-if="$first">*</span></td> </span>
+        </p>
+
+    </div>
+
+</body>
+</html>
